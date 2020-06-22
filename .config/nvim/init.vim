@@ -61,7 +61,6 @@ let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
 
 nmap <Leader>f :Autoformat<CR>
-au BufWrite *.rs :Autoformat
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
