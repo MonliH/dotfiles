@@ -187,7 +187,7 @@ gaps outer 4
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
-bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun 
+bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -display-drun "<|"
 bindsym Control+Shift+k exec flameshot gui
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10

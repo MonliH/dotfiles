@@ -36,6 +36,7 @@ module-margin-right = 2
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
+font-3 = "BlexMono Nerd Font Mono:fontformat=truetype:size=13;0"
 
 modules-left = i3
 modules-center = date
@@ -126,6 +127,33 @@ label-urgent-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume> 
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/mpd]
 type = internal/mpd
@@ -143,8 +171,9 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = BL
+format = <bar> 
+format-prefix = %{T4} %{T-}
+format-prefix-foreground = ${colors.foreground-alt}
 
 bar-width = 10
 bar-indicator = |
@@ -236,8 +265,9 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
+format-prefix = %{T4}ﰝ %{T-}
 
 label-muted = 🔇 muted
 label-muted-foreground = #666
@@ -258,7 +288,7 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
-
+;
 [module/battery]
 type = internal/battery
 battery = BAT0
