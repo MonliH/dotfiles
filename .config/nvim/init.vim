@@ -1,5 +1,4 @@
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf'
 Plug 'kaicataldo/material.vim'
@@ -8,12 +7,14 @@ Plug 'https://github.com/bogado/file-line.git'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'voldikss/vim-floaterm'
-Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'hugolgst/vimsence'
 Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/Colorizer'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'jdonaldson/vaxe'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 function! s:check_back_space() abort
@@ -26,8 +27,7 @@ inoremap <silent><expr> <Tab>
             \ <SID>check_back_space() ? "\<Tab>" :
             \ coc#refresh()
 
-autocmd vimenter * NERDTree
-:set mouse=a
+set mouse=a
 
 set termguicolors
 
@@ -38,6 +38,7 @@ let g:vimsence_small_image = 'neovim'
 let g:vimsence_client_id = '566398769386749973'
 let g:vimsence_file_explorer_text = 'In NERDTree'
 let g:vimsence_file_explorer_details = 'Looking for files'
+autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
 
 colorscheme material
 set number
@@ -57,6 +58,7 @@ noremap <Down> :echo "No down for you!"<CR>
 
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
+let g:python3_host_prog = "/usr/bin/python3"
 let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
 
@@ -68,5 +70,9 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 set clipboard=unnamedplus
-hi Normal guibg=NONE ctermbg=NONE
+
+nmap <space>e :CocCommand explorer<CR>
+
+nnoremap <PageUp> <Nop>
+nnoremap <PageDown> <Nop>
 
