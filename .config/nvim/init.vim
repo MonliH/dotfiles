@@ -21,11 +21,11 @@ Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
 call plug#end()
 
+" CoC setup
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
-
 inoremap <silent><expr> <Tab>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<Tab>" :
@@ -116,4 +116,8 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+" tab to indent
+xnoremap <Tab> >gv
+xnoremap <S-Tab> <gv
 
