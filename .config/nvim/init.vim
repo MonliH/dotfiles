@@ -19,7 +19,9 @@ Plug 'godlygeek/csapprox'
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 call plug#end()
+
 
 " CoC setup
 function! s:check_back_space() abort
@@ -120,4 +122,7 @@ nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<C
 " tab to indent
 xnoremap <Tab> >gv
 xnoremap <S-Tab> <gv
+
+" remove insert mode indicator (lightline)
+set noshowmode
 
