@@ -31,9 +31,9 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-font-3 = "BlexMono Nerd Font Mono:fontformat=truetype:size=13;0"
+font-1 = Unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Siji:pixelsize=10;1
+font-3 = BlexMono Nerd Font Mono:fontformat=truetype:size=13;0
 
 modules-left = i3
 modules-center = date
@@ -278,11 +278,14 @@ full-at = 98
 
 format-charging = <animation-charging> <label-charging>
 # format-charging-underline = #ffb52a
+format-charging-font = 2
+format-discharging-font = 2
 
 format-discharging = <animation-discharging> <label-discharging>
 # format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = ""
+
+format-full-prefix = 
 format-full-prefix-foreground = ${colors.foreground-alt}
 # format-full-underline = ${self.format-charging-underline}
 
@@ -290,18 +293,21 @@ ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-font = 2
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
+animation-charging-font = 2
 
 animation-discharging-0 = 
 animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
+animation-discharging-font = 2
 
 [module/temperature]
 type = internal/temperature
