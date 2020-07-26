@@ -84,7 +84,11 @@ noremap <Up> :echo "No up for you!"<CR>
 noremap <Down> :echo "No down for you!"<CR>
 
 " next coc diagnostic
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> ]n <Plug>(coc-diagnostic-next-error)
+nmap <silent> ]b <Plug>(coc-diagnostic-prev-error)
+
+nmap <silent> ]N <Plug>(coc-diagnostic-next)
+nmap <silent> ]B <Plug>(coc-diagnostic-prev)
 
 " configure python path
 let g:python3_host_prog = "/usr/bin/python3"
@@ -118,10 +122,6 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-
-" tab to indent
-xnoremap <Tab> >gv
-xnoremap <S-Tab> <gv
 
 " remove insert mode indicator (lightline)
 set noshowmode
