@@ -109,6 +109,13 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" coc config
+let g:coc_user_config = {
+            \    'explorer.icon': {
+            \        'enableNerdfont': "true"
+            \    }
+            \}
+
 " coc explorer
 let g:coc_explorer_global_presets = {
             \    'normal': {
