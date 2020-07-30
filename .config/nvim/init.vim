@@ -110,7 +110,13 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " coc explorer
-nmap <space>e :CocCommand explorer<CR>
+let g:coc_explorer_global_presets = {
+            \    'normal': {
+            \        'file-child-template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5][size]'
+            \    }
+            \}
+
+nmap <space>e :CocCommand explorer --preset normal<CR>
 
 " disable page up/down keys (they're annoying!!)
 noremap <PageUp> <Nop>
@@ -137,3 +143,4 @@ function SetupLightlineColors() abort
 
   call lightline#colorscheme()
 endfunction
+
