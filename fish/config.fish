@@ -1,6 +1,8 @@
 
 abbr ls "exa"
 abbr l "exa"
+abbr la "exa -a"
+abbr files "pcmanfm"
 
 if test -f $HOME/.autojump/share/autojump/autojump.fish; . $HOME/.autojump/share/autojump/autojump.fish; end
 
