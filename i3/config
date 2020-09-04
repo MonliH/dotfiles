@@ -22,10 +22,6 @@ font pango:monospace 8
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -148,6 +144,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+Control+f exec --no-startup-id emoji-keyboard
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -183,7 +181,6 @@ for_window [class=".*"] border pixel 0
 gaps inner 6
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-
 exec_always --no-startup-id ~/.config/picom/launch.sh
 
 bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -display-drun "<|"
@@ -191,3 +188,4 @@ bindsym Control+Shift+k exec flameshot gui
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -10
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10
 
+exec --no-startup-id xbindkeys

@@ -144,7 +144,7 @@ let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
 
 " autoformat cmd
-nmap <Leader>f :Autoformat<CR>
+nmap <space>f :Autoformat<CR>
 " }}}
 " Disabled Keys {{{
 " disable arrow keys in normal mode
@@ -174,4 +174,7 @@ let g:python3_host_prog = "/usr/bin/python3"
 
 " vim tabs
 set foldmethod=marker foldenable
+
+" toggle vim tabs to syntax highlight
+nmap <space>h :set foldmethod=syntax foldenable!<CR>
 " }}}
