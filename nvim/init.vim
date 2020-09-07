@@ -145,7 +145,7 @@ let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
 
 " autoformat cmd
-nmap <space>f :Autoformat<:R>
+nmap <space>f :Autoformat<CR>
 
 autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 " }}}
