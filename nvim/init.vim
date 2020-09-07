@@ -21,6 +21,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 Plug 'sheerun/vim-polyglot'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 call plug#end()
@@ -47,8 +48,8 @@ nmap <space>rn <Plug>(coc-rename)
 nmap <silent> ]n <Plug>(coc-diagnostic-next-error)
 nmap <silent> ]b <Plug>(coc-diagnostic-prev-error)
 
-nmap <silent> ]N <Plug>(coc-diagnostic-next)
-nmap <silent> ]B <Plug>(coc-diagnostic-prev)
+nmap <silent> [n <Plug>(coc-diagnostic-next)
+nmap <silent> [b <Plug>(coc-diagnostic-prev)
 
 " jump to useful stuff
 nmap <silent> gd <Plug>(coc-definition)
@@ -144,7 +145,9 @@ let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
 
 " autoformat cmd
-nmap <space>f :Autoformat<CR>
+nmap <space>f :Autoformat<:R>
+
+autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 " }}}
 " Disabled Keys {{{
 " disable arrow keys in normal mode
@@ -177,4 +180,7 @@ set foldmethod=marker foldenable
 
 " toggle vim tabs to syntax highlight
 nmap <space>h :set foldmethod=syntax foldenable!<CR>
+
+" remove highlight
+nmap <space>r :noh<CR>
 " }}}
