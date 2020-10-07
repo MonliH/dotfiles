@@ -1,7 +1,7 @@
 " Plug Plugins {{{
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'kaicataldo/material.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'https://github.com/bogado/file-line.git'
@@ -13,22 +13,29 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MonliH/vimsence'
 Plug 'Chiel92/vim-autoformat'
 Plug 'chrisbra/Colorizer'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'jdonaldson/vaxe'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'godlygeek/csapprox'
 Plug 'airblade/vim-gitgutter'
-Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'vim-scripts/ebnf.vim'
+Plug 'prettier/vim-prettier', {
+            \ 'do': 'yarn install',
+            \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'KabbAmine/vCoolor.vim'
+Plug 'albfan/ag.vim'
+Plug 'tpope/vim-eunuch'
 call plug#end()
 " }}}
 " Plugin Config {{{
 " fuzzy finder bind
-nmap <space>s :FZF<CR>
+nmap <leader>s :FZF<CR>
 " }}}
 " CoC {{{
 " CoC setup
@@ -42,7 +49,7 @@ inoremap <silent><expr> <Tab>
             \ coc#refresh()
 
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-nmap <space>rn <Plug>(coc-rename)
+nmap <leader>rn <Plug>(coc-rename)
 
 " next CoC diagnostic
 nmap <silent> ]n <Plug>(coc-diagnostic-next-error)
@@ -72,22 +79,22 @@ let g:coc_explorer_global_presets = {
             \}
 
 " CoC exploere key map
-nmap <space>e :CocCommand explorer --preset normal<CR>
+nmap <leader>e :CocCommand explorer --preset normal<CR>
 
 " CoC show documentation on K
-nnoremap <silent> <space>k :call <SID>show_documentation()<CR>
+nmap <leader>k :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
 " spellchecker bind
 function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
+    execute 'CocCommand actions.open ' . a:type
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
@@ -129,14 +136,14 @@ set noshowmode
 
 autocmd VimEnter * call SetupLightlineColors()
 function SetupLightlineColors() abort
-  " transparent background in statusbar
-  let l:palette = lightline#palette()
+    " transparent background in statusbar
+    let l:palette = lightline#palette()
 
-  let l:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-  let l:palette.inactive.middle = l:palette.normal.middle
-  let l:palette.tabline.middle = l:palette.normal.middle
+    let l:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+    let l:palette.inactive.middle = l:palette.normal.middle
+    let l:palette.tabline.middle = l:palette.normal.middle
 
-  call lightline#colorscheme()
+    call lightline#colorscheme()
 endfunction
 " }}}
 " Code Formatting {{{
@@ -145,7 +152,7 @@ let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
 
 " autoformat cmd
-nmap <space>f :Autoformat<CR>
+nnoremap <leader>f :Autoformat<CR>
 
 autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 " }}}
@@ -179,8 +186,21 @@ let g:python3_host_prog = "/usr/bin/python3"
 set foldmethod=marker foldenable
 
 " toggle vim tabs to syntax highlight
-nmap <space>h :set foldmethod=syntax foldenable!<CR>
+noremap <leader>h :set foldmethod=syntax foldenable!<CR>
 
 " remove highlight
-nmap <space>r :noh<CR>
+nnoremap <leader>r :noh<CR>
+
+" source bind
+nnoremap <leader>sop :source %<CR>
+
+" open nvimrc
+nnoremap <leader>conf :e $MYVIMRC<cr>
+
+" set leader key to space
+nnoremap <SPACE> <Nop>
+map <Space> <Leader>
+
+" shortcut delay
+set timeoutlen=300
 " }}}
