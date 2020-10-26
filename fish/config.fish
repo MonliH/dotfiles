@@ -2,19 +2,19 @@
 abbr ls "exa"
 abbr l "exa"
 abbr la "exa -a"
+abbr ll "exa -l"
 
 # bat alias
-abbr cat "bat"
+abbr cat "batcat"
 
 # autojump
 if test -f $HOME/.autojump/share/autojump/autojump.fish; . $HOME/.autojump/share/autojump/autojump.fish; end
 
 # helpful env variables
 export LC_CTYPE="en_CA.UTF-8"
-export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
 set -Ux CARGO_TARGET_DIR "$HOME/cargo_builds"
-set -g EDITOR /usr/bin/nvim
-set -g QT_SCALE_FACTOR 0.60
+export EDITOR=/usr/bin/nvim
 
 # nerd fonts
 set -g theme_nerd_fonts yes
@@ -25,7 +25,10 @@ fish_vi_key_bindings
 
 # don't show vi status on powerline prompt
 set -g theme_display_vi no
+set -g theme_color_scheme nord
 
 # remove greeting
 function fish_greeting
 end
+
+export LLVM_SYS_100_PREFIX=/usr/lib/llvm-11/

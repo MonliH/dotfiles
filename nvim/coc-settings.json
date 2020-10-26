@@ -1,0 +1,6 @@
+{
+    "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.checkCurrentLine": true,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.file.column.indent.indentLine": false
+}

@@ -4,19 +4,17 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'kaicataldo/material.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'https://github.com/bogado/file-line.git'
+Plug 'bogado/file-line'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'voldikss/vim-floaterm'
 Plug 'jiangmiao/auto-pairs'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'MonliH/vimsence'
-Plug 'Chiel92/vim-autoformat'
+Plug 'sbdchd/neoformat'
 Plug 'chrisbra/Colorizer'
 Plug 'jdonaldson/vaxe'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'godlygeek/csapprox'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -31,6 +29,11 @@ Plug 'prettier/vim-prettier', {
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'albfan/ag.vim'
 Plug 'tpope/vim-eunuch'
+Plug 'zyedidia/vim-snake'
+Plug 'dstein64/vim-startuptime'
+Plug '~/Documents/programming/github/coc-explorer'
+Plug 'sainnhe/sonokai'
+Plug 'hoov/tmuxline.vim', { 'branch': 'truecolor-lightline' }
 call plug#end()
 " }}}
 " Plugin Config {{{
@@ -64,20 +67,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" CoC config
-let g:coc_user_config = {
-            \    'explorer.icon': {
-            \        'enableNerdfont': "true"
-            \    }
-            \}
-
-" CoC explorer
-let g:coc_explorer_global_presets = {
-            \    'normal': {
-            \        'file-child-template': '[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5][size]'
-            \    }
-            \}
-
 " CoC exploere key map
 nmap <leader>e :CocCommand explorer --preset normal<CR>
 
@@ -108,53 +97,22 @@ let g:vimsence_file_explorer_text = 'In NERDTree'
 let g:vimsence_file_explorer_details = 'Looking for files'
 " }}}
 " Theme {{{
-" theme
-let g:material_theme_style = 'darker'
-let g:material_terminal_italics = 1
-
-" transparent background
-function! AdaptColorscheme()
-    highlight clear CursorLine
-    highlight Normal ctermbg=none guibg=NONE
-    highlight LineNr ctermbg=none guibg=NONE
-    highlight Folded ctermbg=none guibg=NONE
-    highlight NonText ctermbg=none guibg=NONE
-    highlight SpecialKey ctermbg=none guibg=NONE
-    highlight VertSplit ctermbg=none guibg=NONE
-    highlight SignColumn ctermbg=none guibg=NONE
-endfunction
-autocmd ColorScheme * call AdaptColorscheme()
-
-" colors
-colorscheme material
 " nicer colors
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
+
+let g:sonokai_enable_italic = 1
+let g:sonokai_sign_column_background = 'none'
+
+" theme
+colorscheme sonokai
 " }}}
 " Lightline {{{
 " remove insert mode indicator (lightline)
 set noshowmode
 
-autocmd VimEnter * call SetupLightlineColors()
-function SetupLightlineColors() abort
-    " transparent background in statusbar
-    let l:palette = lightline#palette()
-
-    let l:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-    let l:palette.inactive.middle = l:palette.normal.middle
-    let l:palette.tabline.middle = l:palette.normal.middle
-
-    call lightline#colorscheme()
-endfunction
-" }}}
-" Code Formatting {{{
-" rustfmt
-let g:formatdef_rustfmt = '"rustfmt"'
-let g:formatters_rust = ['rustfmt']
-
-" autoformat cmd
-nnoremap <leader>f :Autoformat<CR>
-
-autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+let g:lightline = {'colorscheme' : 'sonokai'}
 " }}}
 " Disabled Keys {{{
 " disable arrow keys in normal mode
@@ -166,6 +124,19 @@ noremap <Down> :echo "No down for you!"<CR>
 " disable page up/down keys (they're annoying!!)
 noremap <PageUp> <Nop>
 noremap <PageDown> <Nop>
+" }}}
+" Language Specific Support {{{
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
+    autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
+augroup END
+
+nnoremap <leader>f :Neoformat<CR>
+" Gdb
+packadd termdebug
+" }}}
+" Tmux Line {{{
 " }}}
 " Miscellaneous {{{
 " relative line numbers
@@ -203,4 +174,7 @@ map <Space> <Leader>
 
 " shortcut delay
 set timeoutlen=300
+
+" detect filetypes
+filetype on
 " }}}
