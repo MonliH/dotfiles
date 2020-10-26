@@ -33,7 +33,9 @@ Plug 'zyedidia/vim-snake'
 Plug 'dstein64/vim-startuptime'
 Plug '~/Documents/programming/github/coc-explorer'
 Plug 'sainnhe/sonokai'
+Plug 'sainnhe/edge'
 Plug 'hoov/tmuxline.vim', { 'branch': 'truecolor-lightline' }
+Plug 'thaerkh/vim-indentguides'
 call plug#end()
 " }}}
 " Plugin Config {{{
@@ -102,17 +104,17 @@ let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 
-let g:sonokai_enable_italic = 1
-let g:sonokai_sign_column_background = 'none'
+let g:edge_enable_italic = 1
+let g:edge_sign_column_background = 'none'
 
 " theme
-colorscheme sonokai
+colorscheme edge
 " }}}
 " Lightline {{{
 " remove insert mode indicator (lightline)
 set noshowmode
 
-let g:lightline = {'colorscheme' : 'sonokai'}
+let g:lightline = {'colorscheme' : 'edge'}
 " }}}
 " Disabled Keys {{{
 " disable arrow keys in normal mode
@@ -135,8 +137,6 @@ augroup END
 nnoremap <leader>f :Neoformat<CR>
 " Gdb
 packadd termdebug
-" }}}
-" Tmux Line {{{
 " }}}
 " Miscellaneous {{{
 " relative line numbers
@@ -177,4 +177,8 @@ set timeoutlen=300
 
 " detect filetypes
 filetype on
+
+" indent marks
+let g:indentguides_spacechar = '|'
+let g:indentguides_tabchar = '|'
 " }}}
