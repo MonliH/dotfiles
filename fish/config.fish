@@ -5,7 +5,11 @@ abbr la "exa -a"
 abbr ll "exa -l"
 
 # bat alias
-abbr cat "batcat"
+if type -q batcat
+    abbr cat "batcat"
+else if type -q bat
+    abbr cat "bat"
+end
 
 # autojump
 if test -f $HOME/.autojump/share/autojump/autojump.fish; . $HOME/.autojump/share/autojump/autojump.fish; end
@@ -14,7 +18,7 @@ if test -f $HOME/.autojump/share/autojump/autojump.fish; . $HOME/.autojump/share
 export LC_CTYPE="en_CA.UTF-8"
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
 set -Ux CARGO_TARGET_DIR "$HOME/cargo_builds"
-export EDITOR=/usr/bin/nvim
+export EDITOR=(which nvim)
 
 # nerd fonts
 set -g theme_nerd_fonts yes
