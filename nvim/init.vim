@@ -1,3 +1,4 @@
+let mapleader = " "
 " Plug Plugins {{{
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -35,12 +36,11 @@ Plug '~/Documents/programming/github/coc-explorer'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/edge'
 Plug 'hoov/tmuxline.vim', { 'branch': 'truecolor-lightline' }
-Plug 'thaerkh/vim-indentguides'
 call plug#end()
 " }}}
 " Plugin Config {{{
 " fuzzy finder bind
-nmap <leader>s :FZF<CR>
+nnoremap <leader>ss :FZF<CR>
 " }}}
 " CoC {{{
 " CoC setup
@@ -163,14 +163,14 @@ noremap <leader>h :set foldmethod=syntax foldenable!<CR>
 nnoremap <leader>r :noh<CR>
 
 " source bind
-nnoremap <leader>sop :source %<CR>
+nnoremap <leader>sf :source %<CR>
 
 " open nvimrc
 nnoremap <leader>conf :e $MYVIMRC<cr>
 
-" set leader key to space
-nnoremap <SPACE> <Nop>
-map <Space> <Leader>
+" leave insert mdoe with jk or kj
+inoremap jk <esc>
+inoremap kj <esc>
 
 " shortcut delay
 set timeoutlen=300
