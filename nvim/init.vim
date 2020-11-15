@@ -22,20 +22,15 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
-Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'vim-scripts/ebnf.vim'
-Plug 'prettier/vim-prettier', {
-            \ 'do': 'yarn install',
-            \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'albfan/ag.vim'
-Plug 'tpope/vim-eunuch'
-Plug 'zyedidia/vim-snake'
 Plug 'dstein64/vim-startuptime'
 Plug '~/Documents/programming/github/coc-explorer'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/edge'
 Plug 'hoov/tmuxline.vim', { 'branch': 'truecolor-lightline' }
+Plug 'fluo-lang/fluo.vim'
 call plug#end()
 " }}}
 " Plugin Config {{{
@@ -106,6 +101,11 @@ set termguicolors
 
 let g:edge_enable_italic = 1
 let g:edge_sign_column_background = 'none'
+
+highlight! link CocExplorerGitPathChange Blue
+highlight! link CocExplorerGitContentChange Blue
+highlight! link CocExplorerGitDeleted Red
+highlight! link CocExplorerGitIgnored Grey
 
 " theme
 colorscheme edge
