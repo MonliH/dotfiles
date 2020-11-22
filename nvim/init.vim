@@ -5,29 +5,21 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'kaicataldo/material.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'bogado/file-line'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'voldikss/vim-floaterm'
-Plug 'jiangmiao/auto-pairs'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'sbdchd/neoformat'
 Plug 'chrisbra/Colorizer'
-Plug 'jdonaldson/vaxe'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/ebnf.vim'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'albfan/ag.vim'
 Plug 'dstein64/vim-startuptime'
-Plug '~/Documents/programming/github/coc-explorer'
-Plug 'sainnhe/sonokai'
 Plug 'sainnhe/edge'
 Plug 'hoov/tmuxline.vim', { 'branch': 'truecolor-lightline' }
 Plug 'fluo-lang/fluo.vim'
