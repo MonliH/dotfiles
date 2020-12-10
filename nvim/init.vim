@@ -1,4 +1,4 @@
-let mapleader = " "
+let mapleader = ' '
 " Plug Plugins {{{
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -20,7 +20,7 @@ Plug 'vim-scripts/ebnf.vim'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'albfan/ag.vim'
 Plug 'dstein64/vim-startuptime'
-Plug 'sainnhe/edge'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'hoov/tmuxline.vim', { 'branch': 'truecolor-lightline' }
 Plug 'fluo-lang/fluo.vim'
 call plug#end()
@@ -87,33 +87,64 @@ let g:vimsence_file_explorer_details = 'Looking for files'
 " }}}
 " Theme {{{
 " nicer colors
-let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+let &t_8f='\<Esc>[38;2;%lu;%lu;%lum'
+let &t_8b='\<Esc>[48;2;%lu;%lu;%lum'
 set termguicolors
 
-let g:edge_enable_italic = 1
-let g:edge_sign_column_background = 'none'
+highlight! link CocExplorerGitPathChange gitcommitUnmerged
+highlight! link CocExplorerGitContentChange gitcommitHeader
+highlight! link CocExplorerGitDeleted gitcommitDiscardedFile
+highlight! link CocExplorerGitIgnored Comment
+highlight! link CocWarningSign Type
 
-highlight! link CocExplorerGitPathChange Blue
-highlight! link CocExplorerGitContentChange Blue
-highlight! link CocExplorerGitDeleted Red
-highlight! link CocExplorerGitIgnored Grey
+" transparent background
+function! AdaptColorscheme()
+    highlight clear CursorLine
+    highlight Normal ctermbg=none guibg=NONE
+    highlight LineNr ctermbg=none guibg=NONE
+    highlight Folded ctermbg=none guibg=NONE
+    highlight NonText ctermbg=none guibg=NONE
+    highlight SpecialKey ctermbg=none guibg=NONE
+    highlight VertSplit ctermbg=none guibg=NONE
+    highlight SignColumn ctermbg=none guibg=NONE
+    highlight EndOfBuffer ctermbg=none guibg=NONE
+endfunction
+autocmd ColorScheme * call AdaptColorscheme()
+
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'darker'
 
 " theme
-colorscheme edge
+colorscheme material
 " }}}
 " Lightline {{{
 " remove insert mode indicator (lightline)
 set noshowmode
 
-let g:lightline = {'colorscheme' : 'edge'}
+let g:lightline = {'colorscheme' : 'material_vim'}
+
+function SetupLightlineColors() abort
+    " transparent background in statusbar
+    let l:palette = lightline#palette()
+
+    let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+    let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+    let s:palette.visual.middle = s:palette.normal.middle
+    let s:palette.insert.middle = s:palette.normal.middle
+    let s:palette.inactive.middle = s:palette.normal.middle
+    let s:palette.tabline.middle = s:palette.normal.middle
+
+    call lightline#colorscheme()
+endfunction
+
+autocmd VimEnter * call SetupLightlineColors()
 " }}}
 " Disabled Keys {{{
 " disable arrow keys in normal mode
-noremap <Left> :echo "No left for you!"<CR>
-noremap <Right> :echo "No right for you!"<CR>
-noremap <Up> :echo "No up for you!"<CR>
-noremap <Down> :echo "No down for you!"<CR>
+noremap <Left> :echo 'No left for you!'<CR>
+noremap <Right> :echo 'No right for you!'<CR>
+noremap <Up> :echo 'No up for you!'<CR>
+noremap <Down> :echo 'No down for you!'<CR>
 
 " disable page up/down keys (they're annoying!!)
 noremap <PageUp> <Nop>
@@ -127,6 +158,8 @@ augroup SyntaxSettings
 augroup END
 
 nnoremap <leader>f :Neoformat<CR>
+let g:neoformat_enabled_markdown = ['prettier']
+
 " Gdb
 packadd termdebug
 " }}}
@@ -143,7 +176,7 @@ set hidden
 set smartindent
 
 " configure python path
-let g:python3_host_prog = "/usr/bin/python3"
+let g:python3_host_prog = '/usr/bin/python3'
 
 " vim tabs
 set foldmethod=marker foldenable
