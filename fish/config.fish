@@ -1,8 +1,10 @@
 # exa aliases
-abbr ls "exa"
-abbr l "exa"
-abbr la "exa -a"
-abbr ll "exa -l"
+if type -q exa
+    abbr ls "exa"
+    abbr l "exa"
+    abbr la "exa -a"
+    abbr ll "exa -l"
+end
 
 # bat alias
 if type -q batcat
