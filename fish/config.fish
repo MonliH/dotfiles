@@ -1,10 +1,8 @@
 # exa aliases
-if type -q exa
-    abbr ls "exa"
-    abbr l "exa"
-    abbr la "exa -a"
-    abbr ll "exa -l"
-end
+abbr ls "exa"
+abbr l "exa"
+abbr la "exa -a"
+abbr ll "exa -l"
 
 # bat alias
 if type -q batcat
@@ -31,10 +29,11 @@ fish_vi_key_bindings
 
 # don't show vi status on powerline prompt
 set -g theme_display_vi no
-set -g theme_color_scheme nord
+set -g theme_color_scheme dark
 
 # remove greeting
 function fish_greeting
 end
 
 export LLVM_SYS_100_PREFIX=/usr/lib/llvm-11/
+export LC_ALL=en_US.UTF-8
