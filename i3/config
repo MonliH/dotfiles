@@ -38,7 +38,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -184,9 +184,12 @@ gaps inner 6
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/picom/launch.sh
 
-bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -display-drun "<|"
+bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun -display-drun "|>" -font "FiraCode Nerd Font 10"
 bindsym Control+Shift+k exec flameshot gui
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -5
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +5
 
 exec --no-startup-id xbindkeys
+exec --no-startup-id nm-applet
+exec --no-startup-id xrandr --output eDP1 --set "Broadcast RGB" "Full"
+exec --no-startup-id setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape'
