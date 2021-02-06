@@ -3,12 +3,12 @@ let mapleader = ' '
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'kaicataldo/material.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'sbdchd/neoformat'
 Plug 'chrisbra/Colorizer'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'airblade/vim-gitgutter'
@@ -21,13 +21,24 @@ Plug 'KabbAmine/vCoolor.vim'
 Plug 'albfan/ag.vim'
 Plug 'dstein64/vim-startuptime'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'sbdchd/neoformat'
 Plug 'hoov/tmuxline.vim', { 'branch': 'truecolor-lightline' }
 Plug 'fluo-lang/fluo.vim'
+Plug 'arthurxavierx/vim-caser'
+Plug 'ryanoasis/vim-devicons'
+Plug 'simnalamburt/vim-mundo'
+Plug 'vim-scripts/ebnf.vim'
 call plug#end()
 " }}}
 " Plugin Config {{{
-" fuzzy finder bind
-nnoremap <leader>ss :FZF<CR>
+" fuzzy finder files
+nnoremap <leader>sf :Files<CR>
+
+" fuzzy finder buffers
+nnoremap <leader>sb :Buffers<CR>
+
+" undo tree
+nnoremap <leader>ut :MundoToggle<CR>
 " }}}
 " CoC {{{
 " CoC setup
@@ -35,12 +46,15 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
+
 inoremap <silent><expr> <Tab>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<Tab>" :
             \ coc#refresh()
 
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 nmap <leader>rn <Plug>(coc-rename)
 
 " next CoC diagnostic
@@ -56,8 +70,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <leader>cr :CocRestart<CR>
+
 " CoC exploere key map
-nmap <leader>e :CocCommand explorer --preset normal<CR>
+nmap <leader>e :CocCommand explorer<CR>
 
 " CoC show documentation on K
 nmap <leader>k :call <SID>show_documentation()<CR>
@@ -155,10 +171,16 @@ augroup SyntaxSettings
     autocmd!
     autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
     autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
+    autocmd BufNewFile,BufRead *.ebnf set filetype=ebnf
+    autocmd Filetype cpp,c,haskell,js,typescript,typescriptreact,javascriptreact setlocal shiftwidth=2 tabstop=2
 augroup END
 
+let g:formatdef_brittany = '"brittany"'
+let g:formatters_haskell  = ['brittany']
+
 nnoremap <leader>f :Neoformat<CR>
-let g:neoformat_enabled_markdown = ['prettier']
+au BufWrite *.rs :Neoformat
+let g:neoformat_enabled_haskell = ["brittany"]
 
 " Gdb
 packadd termdebug
@@ -187,15 +209,18 @@ noremap <leader>h :set foldmethod=syntax foldenable!<CR>
 " remove highlight
 nnoremap <leader>r :noh<CR>
 
-" source bind
-nnoremap <leader>sf :source %<CR>
-
 " open nvimrc
 nnoremap <leader>conf :e $MYVIMRC<cr>
 
 " leave insert mdoe with jk or kj
 inoremap jk <esc>
 inoremap kj <esc>
+inoremap Jk <esc>
+inoremap Kj <esc>
+inoremap JK <esc>
+inoremap KJ <esc>
+inoremap jK <esc>
+inoremap kJ <esc>
 
 " shortcut delay
 set timeoutlen=300
@@ -206,4 +231,11 @@ filetype on
 " indent marks
 let g:indentguides_spacechar = '|'
 let g:indentguides_tabchar = '|'
+
+" mouse support
+set mouse=a
+
+set undodir=~/.vim/undo
+set undofile
+set undolevels=10000 
 " }}}

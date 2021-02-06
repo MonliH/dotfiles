@@ -2,6 +2,27 @@
     "diagnostic.refreshOnInsertMode": true,
     "diagnostic.checkCurrentLine": true,
     "explorer.icon.enableNerdfont": true,
-    "explorer.file.column.indent.indentLine": false,
-    "explorer.filename.colored.enable": true
+    "explorer.filename.colored.enable": true,
+    "eslint.autoFixOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "rust-analyzer.procMacro.enable": true,
+    "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+    "languageserver": {
+        "haskell": {
+            "command": "haskell-language-server-wrapper",
+            "args": ["--lsp"],
+            "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+            "filetypes": ["haskell", "lhaskell"]
+        },
+        "ccls": {
+          "command": "ccls",
+          "filetypes": ["c", "cpp", "objc", "objcpp"],
+          "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+          "initializationOptions": {
+             "cache": {
+               "directory": "/tmp/ccls"
+             }
+           }
+        }
+    }
 }
