@@ -139,11 +139,11 @@ myKeys conf@(XConfig { XMonad.modMask = modm }) =
 
     -- Power option
        , ( (modm, xK_p)
-         , submap
-         . M.fromList
-         $ [ ((0, xK_l), io (exitWith ExitSuccess))
-           , ((0, xK_s), spawn "systemctl poweroff")
-           , ((0, xK_r), spawn "systemctl reboot")
+         , submap . M.fromList $ concat $ map
+           (\a -> [((modm, fst a), snd a), ((0, fst a), snd a)])
+           [ (xK_l, io (exitWith ExitSuccess))
+           , (xK_s, spawn "systemctl poweroff")
+           , (xK_r, spawn "systemctl reboot")
            ]
          )
 
