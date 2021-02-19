@@ -16,6 +16,7 @@ import           XMonad.Actions.Submap
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Layout.Spacing
 import           XMonad.Hooks.FadeInactive
+import           XMonad.Hooks.ManageHelpers
 import qualified XMonad.StackSet               as W
 import qualified Data.Map                      as M
 
@@ -136,6 +137,9 @@ myKeys conf@(XConfig { XMonad.modMask = modm }) =
 
     -- Deincrement the number of windows in the master area
        , ((modm, xK_period)             , sendMessage (IncMasterN (-1)))
+
+    -- Toggle struts
+       , ((modm, xK_b)                  , sendMessage ToggleStruts)
 
     -- Power option
        , ( (modm, xK_p)

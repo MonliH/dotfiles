@@ -28,6 +28,7 @@ Plug 'arthurxavierx/vim-caser'
 Plug 'ryanoasis/vim-devicons'
 Plug 'simnalamburt/vim-mundo'
 Plug 'vim-scripts/ebnf.vim'
+Plug 'aurieh/discord.nvim'
 call plug#end()
 " }}}
 " Plugin Config {{{
@@ -92,14 +93,6 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-" }}}
-" Discord {{{
-" discord rich presence
-let g:vimsence_small_text = 'NeoVim'
-let g:vimsence_small_image = 'neovim'
-let g:vimsence_client_id = '566398769386749973'
-let g:vimsence_file_explorer_text = 'In NERDTree'
-let g:vimsence_file_explorer_details = 'Looking for files'
 " }}}
 " Theme {{{
 " nicer colors
