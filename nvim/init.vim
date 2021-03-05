@@ -29,11 +29,12 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'simnalamburt/vim-mundo'
 Plug 'vim-scripts/ebnf.vim'
 Plug 'aurieh/discord.nvim'
+Plug 'markonm/traces.vim'
 call plug#end()
 " }}}
 " Plugin Config {{{
 " fuzzy finder files
-nnoremap <leader>sf :Files<CR>
+nnoremap <leader>sf :GFiles<CR>
 
 " fuzzy finder buffers
 nnoremap <leader>sb :Buffers<CR>
@@ -71,6 +72,11 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" coc action
+nmap <leader>ga :CocAction<CR>
+" coc codelens
+nmap <leader>gc <Plug>(coc-codelens-action)
+
 nmap <leader>cr :CocRestart<CR>
 
 " CoC exploere key map
@@ -100,11 +106,12 @@ let &t_8f='\<Esc>[38;2;%lu;%lu;%lum'
 let &t_8b='\<Esc>[48;2;%lu;%lu;%lum'
 set termguicolors
 
-highlight! link CocExplorerGitPathChange gitcommitUnmerged
-highlight! link CocExplorerGitContentChange gitcommitHeader
-highlight! link CocExplorerGitDeleted gitcommitDiscardedFile
-highlight! link CocExplorerGitIgnored Comment
-highlight! link CocWarningSign Type
+autocmd ColorScheme *
+    \ highlight! link CocExplorerGitPathChange gitcommitUnmerged
+    \| highlight! link CocExplorerGitContentChange Debug
+    \| highlight! link CocExplorerGitDeleted gitcommitDiscardedFile
+    \| highlight! link CocExplorerGitIgnored Comment
+    \| highlight! link CocWarningSign Type
 
 " transparent background
 function! AdaptColorscheme()
@@ -122,6 +129,7 @@ autocmd ColorScheme * call AdaptColorscheme()
 
 let g:material_terminal_italics = 1
 let g:material_theme_style = 'darker'
+let g:discord_activate_on_enter = 0
 
 " theme
 colorscheme material
