@@ -8,7 +8,8 @@ let g:coc_global_extensions = [
             \ 'coc-styled-components',
             \ 'coc-tabnine',
             \ 'coc-discord-rpc',
-            \ 'coc-jedi',
+            \ 'coc-svelte',
+            \ 'coc-pyright',
             \ 'coc-tsserver'
             \ ]
 
@@ -18,6 +19,7 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'vmchale/ats-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'kaicataldo/material.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() }, 'branch': 'release' }
@@ -221,7 +223,8 @@ augroup SyntaxSettings
     autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
     autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
     autocmd BufNewFile,BufRead *.ebnf set filetype=ebnf
-    autocmd Filetype cpp,c,haskell,js,typescript,typescriptreact,javascriptreact setlocal shiftwidth=2 tabstop=2
+    autocmd BufNewFile,BufRead *.clol set filetype=c
+    autocmd Filetype svelte,cpp,c,haskell,js,typescript,typescriptreact,javascriptreact setlocal shiftwidth=2 tabstop=2
 augroup END
 
 let g:formatdef_brittany = '"brittany"'
