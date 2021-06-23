@@ -7,12 +7,15 @@
     "eslint.alwaysShowStatus": true,
     "rust-analyzer.procMacro.enable": true,
     "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+    "rpc.workspaceElapsedTime": true,
+    "rpc.showProblems": false,
+    "svelte.plugin.svelte.format.enable": false,
     "languageserver": {
         "haskell": {
-            "command": "haskell-language-server-wrapper",
-            "args": ["--lsp"],
-            "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
-            "filetypes": ["haskell", "lhaskell"]
+          "command": "haskell-language-server-wrapper",
+          "args": ["--lsp"],
+          "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
+          "filetypes": ["haskell", "lhaskell", "alex", "happy"]
         },
         "ccls": {
           "command": "ccls",

@@ -16,7 +16,8 @@ if test -f $HOME/.autojump/share/autojump/autojump.fish; . $HOME/.autojump/share
 
 # helpful env variables
 export LC_CTYPE="en_CA.UTF-8"
-export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin:/home/jonathan/.local/share/gem/ruby/2.7.0/bin:$HOME/.emacs.d/bin/"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 set -Ux CARGO_TARGET_DIR "$HOME/cargo_builds"
 export EDITOR=(which nvim)
 
@@ -37,3 +38,4 @@ end
 
 export LLVM_SYS_100_PREFIX=/usr/lib/llvm-11/
 export LC_ALL=en_US.UTF-8
+set -x VIRTUAL_ENV_DISABLE_PROMPT 1
