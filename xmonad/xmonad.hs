@@ -140,6 +140,8 @@ myKeys conf@(XConfig { XMonad.modMask = modm }) =
 
     -- Toggle struts
        , ((modm, xK_b)                  , sendMessage ToggleStruts)
+    -- Toggle struts
+       , ((modm .|. shiftMask, xK_k)    , spawn "flameshot gui")
 
     -- Power option
        , ( (modm, xK_p)
@@ -302,7 +304,7 @@ myLogHook xmproc = do
                             , ppUrgent  = xmobarColor "#FF5555" ""
                             , ppSep     = " | "
                             }
-  where fadeAmount = 0.7
+  where fadeAmount = 0.9
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -321,6 +323,7 @@ myStartupHook = do
   spawnOnce
     "setxkbmap -option 'caps:ctrl_modifier' && xcape -e 'Caps_Lock=Escape' &"
   spawnOnce "gtk-launch redshift-gtk.desktop &"
+  spawnOnce "blueman-applet &"
   spawnOnce
     "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x000000  --height 22 &"
 
