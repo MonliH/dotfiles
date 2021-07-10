@@ -41,7 +41,7 @@ Plug 'hoov/tmuxline.vim', { 'branch': 'truecolor-lightline' }
 Plug 'fluo-lang/fluo.vim'
 Plug 'arthurxavierx/vim-caser'
 Plug 'ryanoasis/vim-devicons'
-Plug 'simnalamburt/vim-mundo'
+Plug 'mbbill/undotree'
 Plug 'vim-scripts/ebnf.vim'
 Plug 'markonm/traces.vim'
 Plug 'andy-morris/alex.vim'
@@ -50,6 +50,7 @@ Plug 'monkoose/fzf-hoogle.vim'
 Plug 'josa42/vim-lightline-coc'
 Plug 'honza/vim-snippets'
 Plug 'Xe/lolcode.vim'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 call plug#end()
 " }}}
 " Plugin Config {{{
@@ -60,8 +61,8 @@ nnoremap <leader>sf :GFiles<CR>
 nnoremap <leader>sb :Buffers<CR>
 
 " undo tree
-nnoremap <leader>ut :MundoToggle<CR>
-" undo tree
+nnoremap <leader>ut :UndotreeToggle<CR>
+" hoogle
 nnoremap <leader>sh :Hoogle<CR>
 " }}}
 " CoC {{{
@@ -225,6 +226,7 @@ augroup SyntaxSettings
     autocmd BufNewFile,BufRead *.ebnf set filetype=ebnf
     autocmd BufNewFile,BufRead *.clol set filetype=c
     autocmd Filetype svelte,cpp,c,haskell,js,typescript,typescriptreact,javascriptreact setlocal shiftwidth=2 tabstop=2
+    autocmd BufRead,BufNewFile *.S set filetype=asm
 augroup END
 
 let g:formatdef_brittany = '"brittany"'
@@ -278,6 +280,12 @@ inoremap KJ <esc>
 inoremap jK <esc>
 inoremap kJ <esc>
 
+" make window nav much easier!
+nnoremap <c-j> <c-w>j
+nnoremap <c-l> <c-w>l
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+
 " shortcut delay
 set timeoutlen=300
 
@@ -292,8 +300,15 @@ let g:indentguides_tabchar = '|'
 set mouse=a
 
 set undodir=~/.vim/undo
-set undofile
 set undolevels=10000 
 
 nnoremap <leader>sc :source %<CR>
+
+" speed up macros
+set lazyredraw
+
+" improve casing search
+set smartcase
+
+set inccommand=nosplit
 " }}}
