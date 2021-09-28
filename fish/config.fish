@@ -30,7 +30,7 @@ fish_vi_key_bindings
 
 # don't show vi status on powerline prompt
 set -g theme_display_vi no
-set -g theme_color_scheme dark
+set -g theme_color_scheme nord
 
 # remove greeting
 function fish_greeting
@@ -38,4 +38,5 @@ end
 
 export LLVM_SYS_100_PREFIX=/usr/lib/llvm-11/
 export LC_ALL=en_US.UTF-8
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/jonathan/.mujoco/mjpro150/bin"
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
