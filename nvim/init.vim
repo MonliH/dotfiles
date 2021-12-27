@@ -10,17 +10,20 @@ let g:coc_global_extensions = [
             \ 'coc-discord-rpc',
             \ 'coc-svelte',
             \ 'coc-pyright',
-            \ 'coc-tsserver'
+            \ 'coc-tsserver',
+            \ 'coc-julia'
             \ ]
 
 let mapleader = ' '
 " Plug Plugins {{{
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'vmchale/ats-vim'
+Plug 'rust-lang/rust.vim'
+Plug 'qnighy/lalrpop.vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
-Plug 'kaicataldo/material.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install() }, 'branch': 'release' }
 Plug 'HerringtonDarkholme/yats.vim'
@@ -35,7 +38,6 @@ Plug 'vim-scripts/ebnf.vim'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'albfan/ag.vim'
 Plug 'dstein64/vim-startuptime'
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'sbdchd/neoformat'
 Plug 'hoov/tmuxline.vim', { 'branch': 'truecolor-lightline' }
 Plug 'fluo-lang/fluo.vim'
@@ -149,13 +151,11 @@ function! AdaptColorscheme()
     highlight SignColumn ctermbg=none guibg=NONE
     highlight EndOfBuffer ctermbg=none guibg=NONE
 endfunction
-autocmd ColorScheme * call AdaptColorscheme()
-
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'darker'
+" autocmd ColorScheme * call AdaptColorscheme()
 
 " theme
-colorscheme material
+colorscheme nord
+
 " }}}
 " Lightline {{{
 " remove insert mode indicator (lightline)
@@ -165,7 +165,7 @@ let g:lightline = {
   \     'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'filename', 'modified', 'coc_status' ] ]
   \   },
-  \   'colorscheme' : 'material_vim'
+  \   'colorscheme' : 'nord'
   \ }
 
 call lightline#coc#register()
