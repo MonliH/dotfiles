@@ -1,0 +1,20 @@
+let mapleader = " "
+
+set ideajoin
+set surround
+inoremap JK <Esc>
+inoremap jk <Esc>
+inoremap Jk <Esc>
+inoremap jK <Esc>
+
+inoremap kj <Esc>
+inoremap KJ <Esc>
+inoremap Kj <Esc>
+inoremap kJ <Esc>
+
+map <leader>f <Action>(ReformatCode)
+map <leader>k <Action>(ExpressionTypeInfo)
+map <leader>r <Action>(Run)
+
+set relativenumber
+set number
