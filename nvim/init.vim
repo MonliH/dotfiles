@@ -11,6 +11,7 @@ let g:coc_global_extensions = [
             \ 'coc-svelte',
             \ 'coc-pyright',
             \ 'coc-tsserver',
+            \ 'coc-pairs',
             \ 'coc-julia'
             \ ]
 
@@ -20,7 +21,7 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'vmchale/ats-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'qnighy/lalrpop.vim'
-Plug 'arcticicestudio/nord-vim'
+Plug 'kaicataldo/material.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
@@ -154,7 +155,9 @@ endfunction
 " autocmd ColorScheme * call AdaptColorscheme()
 
 " theme
-colorscheme nord
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'darker'
+colorscheme material
 
 " }}}
 " Lightline {{{
@@ -234,8 +237,8 @@ let g:formatters_haskell  = ['brittany']
 
 let g:neoformat_enabled_python = ['black']
 
-nnoremap <leader>f :Neoformat<CR>
-au BufWrite *.rs :Neoformat
+nnoremap <leader>f :silent Neoformat<CR>
+au BufWrite *.rs :silent Neoformat<CR>
 let g:neoformat_enabled_haskell = ['brittany']
 let g:neoformat_enabled_typescriptreact = ['prettier']
 let g:neoformat_enabled_typescript = ['prettier']
@@ -286,6 +289,9 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 
+nnoremap j gj
+nnoremap k gk
+
 " shortcut delay
 set timeoutlen=300
 
@@ -308,6 +314,7 @@ nnoremap <leader>sc :source %<CR>
 set lazyredraw
 
 " improve casing search
+set ignorecase
 set smartcase
 
 set inccommand=nosplit
